@@ -10,10 +10,12 @@
 </head>
 <body>
 <section>
-    <?php
-	if($isLoggedIn):
-	?>
-    you are logged in as: <strong><?= $username ?></strong>
+    {% if username %}
+        <p>
+           Logged in as : {{ username }}
+        </p>
+        <hr>
+    {% endif %}
 
 </section>
 
@@ -37,7 +39,7 @@
 {% endblock %}
 
 <footer>
-    2016 Cathal Moore WebFrameWork Project
+    2016 Ciaran Keyes WebFrameWork Project
 </footer>
 </body>
 </html>

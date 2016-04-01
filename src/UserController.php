@@ -21,16 +21,18 @@ class UserController
         $password = $request->get('password');
 
         // authenticate!
-        if ('user' === $username && 'user' === $password) {
+        if ($username !== '' && $password !== '') {
             // store username in 'user' in 'session'
-            $app['session']->set('user', array('username' => $username) );
+            $app['session']->set('user', array('username' => $username));
 
-            // success - redirect to the secure admin home page
-            return $app->redirect('admin');
+            $templateName = 'loginSuccess';
+            $argsArray = array('username' => $username);
+            return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
 
-        // login page with error message
-        // ------------
+
+            // success - redirect to the secure admin home page
+           // return $app->redirect('admin');
         $templateName = 'members';
         $argsArray = array(
             'errorMessage' => 'bad username or password - please re-enter'
