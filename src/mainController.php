@@ -1,44 +1,56 @@
 <?php
-// read in our Dvd class declaration
+namespace Itb;
 
-require_once __DIR__ . '/../src/Dvd.php';
-require_once __DIR__ . '/../src/DvdRepository.php';
+use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
-function aboutAction()
+class MainController
 {
-    $pageTitle = 'About Us';
-    $aboutLinkStyle = 'current_page';
-    require_once __DIR__ . '/../templates/about.php';
-}
+    /**
+     * render the days page template
+     */
+    public function daysAction(Request $request, Application $app)
+    {
+        $days = array(
+            'Classes',
+            'Classes',
+            'Classes',
+            'Classes',
+            'Classes',
+            'Classes',
+            'Classes'
+        );
 
-function contactAction()
-{
-    $pageTitle = 'Contact Us';
-    $contactLinkStyle = 'current_page';
-    require_once __DIR__ . '/../templates/contact.php';
-}
 
-function indexAction()
-{
-    $pageTitle = 'Home Page';
-    $indexLinkStyle = 'current_page';
-    require_once __DIR__ . '/../templates/index.php';
-}
+        $argsArray = [
+            'days' => $days,
+        ];
 
-function listAction()
-{
-    $pageTitle = 'DVD listings';
-    $listLinkStyle = 'current_page';
-    
-    $dvdRepository = new DvdRepository();
-    $dvds = $dvdRepository->getAll();
+        $templateName = 'days';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
 
-    require_once __DIR__ . '/../templates/list.php';
-}
+    /**
+     * render the About page template
+     */
+    public function membersAction(Request $request, Application $app)
+    {
+        $argsArray = [];
 
-function sitemapAction()
-{
-    $pageTitle = 'Site Map';
-    $sitemapLinkStyle = 'current_page';
-    require_once __DIR__ . '/../templates/sitemap.php';
+
+        $templateName = 'members';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * render the Index page template
+     */
+    public function indexAction(Request $request, Application $app)
+    {
+        $argsArray = [];
+
+
+        $templateName = 'index';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
 }
