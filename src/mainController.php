@@ -6,6 +6,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainController
 {
+    public function listAction(Request $request, Application $app)
+    {
+        $dvdRepository = new DvdRepository();
+        $dvds = $dvdRepository->getAll();
+
+        $argsArray = [
+            'dvds' => $dvds,
+        ];
+
+        $templateName = 'list';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
     /**
      * render the days page template
      */

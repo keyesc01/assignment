@@ -8,3 +8,9 @@ footer {
     text-align: center;
     background-color: lightblue;
 }
+table {
+    border: 0.1px black solid;
+}
+td {
+    border: 0.1px black solid;
+}
