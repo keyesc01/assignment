@@ -21,17 +21,16 @@
         <th> last grade </th>
         <th> current grade</th>
     </tr>
-
-{% for dvd in dvds %}
-    <tr>
-        <td>{{ dvd.id }}</td>
-        <td>{{ dvd.username }}</td>
-        <td>{{ dvd.password }}</td>
-        <td>{{ dvd.joined }}</td>
-        <td>{{ dvd.lastGrade }} </td>
-        <td>{{ dvd.currentGrade }}</td>
-    </tr>
-{% endfor %}
+    {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.username }}</td>
+            <td>{{ student.password }}</td>
+            <td>{{ student.joined }}</td>
+            <td>{{ student.lastGrade }} </td>
+            <td>{{ student.currentGrade }}</td>
+        </tr>
+    {% endfor %}
 
 </table>
 

@@ -15,6 +15,7 @@ define('DB_NAME', 'student');
 $app->get('/',      \Itb\Utility::controller('Itb', 'main/index'));
 $app->get('/index',      \Itb\Utility::controller('Itb', 'main/index'));
 $app->get('/admin', \Itb\Utility::controller('Itb', 'main/admin'));
+$app->post('/insert', \Itb\Utility::controller('Itb', 'main/insert'));
 $app->get('/members', \Itb\Utility::controller('Itb', 'main/members'));
 $app->get('/days', \Itb\Utility::controller('Itb', 'main/days'));
 $app->get('/list', \Itb\Utility::controller('Itb', 'main/list'));

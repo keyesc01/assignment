@@ -13,7 +13,7 @@
 
 {% block main %}
 
-    <h1>Welcome to the Admin home page !</h1>
+    <h1>insert page</h1>
 
     <h2>What is in the student db table</h2>
 need add user, update , delete
@@ -37,6 +37,28 @@ need add user, update , delete
             </tr>
         {% endfor %}
 
-   </table>
-<a href="/insert"> to insert page</a>
+    {#</table>#}
+    {#<form method="post" action="?action=insertAction">#}
+    {#<table>#}
+        {#<tr>#}
+            {#<th> add id </th>#}
+            {#<th> add username </th>#}
+            {#<th> add password </th>#}
+            {#<th> add joined </th>#}
+            {#<th> add last grade </th>#}
+            {#<th> add current grade</th>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<td><input type="number" placeholder="id"></td>#}
+            {#<td><input type="text" placeholder="username"></td>#}
+            {#<td><input type="text" placeholder="password"></td>#}
+            {#<td><input type="date"></td>#}
+            {#<td><input type="text" placeholder="last grade"></td>#}
+            {#<td><input type="text" placeholder="current grade"></td>#}
+        {#</tr>#}
+    {#</table>#}
+        {#<input type="submit" name="submit" value="Insert to table">#}
+    {#</form>#}
+
+
 {% endblock %}

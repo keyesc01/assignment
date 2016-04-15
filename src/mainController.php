@@ -1,18 +1,58 @@
 <?php
 namespace Itb;
 
+use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-class MainController
+class MainController extends DatabaseTable
 {
-    public function listAction(Request $request, Application $app)
+    public function indexAction(Request $request, Application $app)
     {
-        $dvdRepository = new StudentRepository();
-        $dvds = $dvdRepository->getAll();
+        $argsArray = [];
+
+
+        $templateName = 'index';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+    public function adminAction(Request $request, Application $app)
+    {
+//        $studentRepository = new StudentRepository();
+        $students = StudentRepository::getAll();
 
         $argsArray = [
-            'dvds' => $dvds,
+            'students' => $students
+        ];
+
+
+
+        $templateName = 'admin';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+
+
+    /**
+     * render the About page template
+     */
+    public function membersAction(Request $request, Application $app)
+    {
+        $argsArray = [];
+
+
+        $templateName = 'members';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * render the Index page template
+     */
+    public function listAction(Request $request, Application $app)
+    {
+        $studentRepository = new StudentRepository();
+        $students = $studentRepository->getAll();
+
+        $argsArray = [
+            'students' => $students
         ];
 
         $templateName = 'list';
@@ -39,42 +79,24 @@ class MainController
         $templateName = 'days';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
-
-    /**
-     * render the About page template
-     */
-    public function membersAction(Request $request, Application $app)
+    public function insertAction(Request $request, Application $app, $id)
     {
-        $argsArray = [];
+        print'boo';
 
-
-        $templateName = 'members';
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-    }
-
-    /**
-     * render the Index page template
-     */
-    public function indexAction(Request $request, Application $app)
-    {
-        $argsArray = [];
-
-
-        $templateName = 'index';
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-    }
-    public function adminAction(Request $request, Application $app)
-    {
-        $dvdRepository = new StudentRepository();
-        $dvds = $dvdRepository->getAll();
+        $students = StudentRepository::getAll();
 
         $argsArray = [
-            'dvds' => $dvds,
+            'students' => $students
         ];
 
-
-
-        $templateName = 'admin';
+        $templateName = 'insert';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
+//        $db = new DatabaseManager();
+//        $connection = $db->getDbh();
+//
+//        $statement = $connection->prepare('INSERT into ' . static::getTableName()  . ' WHERE id=:id');
+//        $statement->bindParam(':id', $id, \PDO::PARAM_INT);
+//        $queryWasSuccessful = $statement->execute();
+//        return $queryWasSuccessful;
     }
 }
