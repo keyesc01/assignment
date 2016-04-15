@@ -21,7 +21,7 @@ class UserController
         $password = $request->get('password');
 
         // authenticate!
-        if ($username !== '' && $password !== '') {
+        if ($username != '' && $password != '') {
             // store username in 'user' in 'session'
             $app['session']->set('user', array('username' => $username));
 

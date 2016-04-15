@@ -1,0 +1,43 @@
+{#----------------#}
+{# templates/admin.html.twig #}
+{#----------------#}
+
+{% extends '_base.html.twig' %}
+
+{% block title %}admin home{% endblock %}
+{% block pageTitle %}admin page{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block adminNavStyle %}current_page{% endblock %}
+
+
+{% block main %}
+
+    <h1>Welcome to the Admin home page !</h1>
+
+    <h2>What is in the student db table</h2>
+need add user, update , delete
+    <table>
+        <tr>
+            <th> id </th>
+            <th> username </th>
+            <th> password </th>
+            <th> joined </th>
+            <th> last grade </th>
+            <th> current grade</th>
+        </tr>
+
+        {% for dvd in dvds %}
+            <tr>
+                <td>{{ dvd.id }}</td>
+                <td>{{ dvd.username }}</td>
+                <td>{{ dvd.password }}</td>
+                <td>{{ dvd.joined }}</td>
+                <td>{{ dvd.lastGrade }} </td>
+                <td>{{ dvd.currentGrade }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

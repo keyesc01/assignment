@@ -52,5 +52,27 @@ class DvdRepository
         }
     }
 
+//    public static function insert($object)
+//    {
+//        $db = new DatabaseManager();
+//        $connection = $db->getDbh();
+//
+//        $objectAsArrayForSqlInsert = DatatbaseUtility::objectToArrayLessId($object);
+//        $fields = array_keys($objectAsArrayForSqlInsert);
+//        $insertFieldList = DatatbaseUtility::fieldListToInsertString($fields);
+//        $valuesFieldList = DatatbaseUtility::fieldListToValuesString($fields);
+//
+//        $statement = $connection->prepare('INSERT into '. static::getTableName()  . ' ' . $insertFieldList . $valuesFieldList);
+//        $statement->execute($objectAsArrayForSqlInsert);
+//
+//        $queryWasSuccessful = ($statement->rowCount() > 0);
+//        if ($queryWasSuccessful) {
+//            return $connection->lastInsertId();
+//        } else {
+//            return -1;
+//        }
+//    }
+
+
 
 }

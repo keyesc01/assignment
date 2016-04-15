@@ -24,13 +24,11 @@ class MainController
     public function daysAction(Request $request, Application $app)
     {
         $days = array(
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes',
-            'Classes'
+            'Monday ='.' Bushido',
+            'Tuesday ='.' Karate',
+            'Wednesday ='.' Kick Boxing',
+            'Thursday ='.' Kendo',
+            'Friday ='.' Bo Staff Training'
         );
 
 
@@ -63,6 +61,20 @@ class MainController
 
 
         $templateName = 'index';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+    public function adminAction(Request $request, Application $app)
+    {
+        $dvdRepository = new DvdRepository();
+        $dvds = $dvdRepository->getAll();
+
+        $argsArray = [
+            'dvds' => $dvds,
+        ];
+
+
+
+        $templateName = 'admin';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 }
