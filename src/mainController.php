@@ -8,7 +8,7 @@ class MainController
 {
     public function listAction(Request $request, Application $app)
     {
-        $dvdRepository = new DvdRepository();
+        $dvdRepository = new StudentRepository();
         $dvds = $dvdRepository->getAll();
 
         $argsArray = [
@@ -65,7 +65,7 @@ class MainController
     }
     public function adminAction(Request $request, Application $app)
     {
-        $dvdRepository = new DvdRepository();
+        $dvdRepository = new StudentRepository();
         $dvds = $dvdRepository->getAll();
 
         $argsArray = [

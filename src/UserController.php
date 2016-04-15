@@ -8,10 +8,11 @@
 
 namespace Itb;
 
+use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController
+class UserController extends DatabaseManager
 {
     // action for POST route:    /processLogin
     public function processLoginAction(Request $request, Application $app)

@@ -26,7 +26,6 @@ need add user, update , delete
             <th> last grade </th>
             <th> current grade</th>
         </tr>
-
         {% for dvd in dvds %}
             <tr>
                 <td>{{ dvd.id }}</td>
@@ -39,5 +38,26 @@ need add user, update , delete
         {% endfor %}
 
     </table>
+    <form method="post" action="">
+    <table>
+        <tr>
+            <th> add id </th>
+            <th> add username </th>
+            <th> add password </th>
+            <th> add joined </th>
+            <th> add last grade </th>
+            <th> add current grade</th>
+        </tr>
+        <tr>
+            <td><input type="number" placeholder="id"></td>
+            <td><input type="text" placeholder="username"></td>
+            <td><input type="text" placeholder="password"></td>
+            <td><input type="date"></td>
+            <td><input type="text" placeholder="last grade"></td>
+            <td><input type="text" placeholder="current grade"></td>
+        </tr>
+    </table>
+    </form>
+
 
 {% endblock %}
