@@ -34,7 +34,7 @@ need add user, update , delete
                 <td>{{ student.joined }}</td>
                 <td>{{ student.lastGrade }} </td>
                 <td>{{ student.currentGrade }}</td>
-                <td><a href=""><input type="button" value="update row"></a></td>
+                <td><a href="/update/{{ student.id }}"><input type="button" value="update row"></a></td>
                 <td>
                     <form>
                         <a href="/delete/{{ student.id }}"><input type="button" value="delete row"></a>

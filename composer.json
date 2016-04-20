@@ -1,7 +1,8 @@
 {
     "autoload":{
       "psr-4":{
-        "Itb\\":"src/"
+        "Itb\\Controller\\":"src/controller",
+        "Itb\\Model\\":"src/model"
       }
     },
     "require": {

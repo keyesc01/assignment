@@ -6,7 +6,7 @@
  * Time: 09:22
  */
 
-namespace Itb;
+namespace Itb\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

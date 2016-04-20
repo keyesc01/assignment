@@ -1,5 +1,5 @@
 <?php
-namespace Itb;
+namespace Itb\Model;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 
 class Student extends DatabaseTable
@@ -70,7 +70,7 @@ class Student extends DatabaseTable
     {
         return $this->currentGrade;
     }
-   
+
 
     public function setUsername($username)
     {

@@ -1,5 +1,5 @@
 <?php
-use Itb\MainController;
+use Itb\Controller\MainController;
 
 // do out basic setup
 // ------------
@@ -8,19 +8,26 @@ require_once __DIR__ . '/../app/setup.php';
 
 
 // use our static controller() method...
-$app->get('/',      \Itb\Utility::controller('Itb', 'main/index'));
-$app->get('/index',      \Itb\Utility::controller('Itb', 'main/index'));
-$app->get('/admin', \Itb\Utility::controller('Itb', 'main/admin'));
+$app->get('/', 'Itb\Controller\MainController::indexAction');
+$app->get('/index', 'Itb\Controller\MainController::indexAction');
+$app->get('/admin', 'Itb\Controller\MainController::adminAction');
 
-$app->get('/members', \Itb\Utility::controller('Itb', 'main/members'));
-$app->get('/days', \Itb\Utility::controller('Itb', 'main/days'));
-$app->get('/list', \Itb\Utility::controller('Itb', 'main/list'));
-$app->post('/login', \Itb\Utility::controller('Itb', 'user/processlogin'));
-$app->post('/processlogin', \Itb\Utility::controller('Itb', 'user/loginsuccess'));
-$app->post('/create', \Itb\Utility::controller('Itb', 'main/createNewStudent'));
+$app->get('/members', 'Itb\Controller\MainController::membersAction');
+$app->get('/days', 'Itb\Controller\MainController::daysAction');
+$app->get('/list', 'Itb\Controller\MainController::listAction');
+$app->post('/create', 'Itb\Controller\MainController::createNewStudentAction');
 
-$app->get('/insert', \Itb\Utility::controller('Itb', 'main/insert'));
-$app->get('/delete/{id}', \Itb\Utility::controller('Itb', 'main/delete'));
+
+$app->get('/insert', 'Itb\Controller\MainController::insertAction');
+$app->get('/delete/{id}', 'Itb\Controller\MainController::deleteAction');
+
+$app->get('/update/{id}', 'Itb\Controller\MainController::updateAction');
+//$app->post('/update', 'Itb\Controller\MainController::updateUserAction');
+$app->post('/updateUser/{id}', 'Itb\Controller\MainController::updateUserAction');
+
+$app->post('/login', 'Itb\Controller\UserController::processloginAction');
+$app->post('/processlogin','Itb\Controller\UserController::loginsuccessAction');
+
 
 $app['debug']=true;
 $app->run();
