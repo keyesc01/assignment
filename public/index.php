@@ -5,26 +5,26 @@ use Itb\MainController;
 // ------------
 require_once __DIR__ . '/../app/setup.php';
 
-define('DB_HOST','localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'student');
 
 
 // use our static controller() method...
 $app->get('/',      \Itb\Utility::controller('Itb', 'main/index'));
 $app->get('/index',      \Itb\Utility::controller('Itb', 'main/index'));
 $app->get('/admin', \Itb\Utility::controller('Itb', 'main/admin'));
-$app->post('/insert', \Itb\Utility::controller('Itb', 'main/insert'));
+
 $app->get('/members', \Itb\Utility::controller('Itb', 'main/members'));
 $app->get('/days', \Itb\Utility::controller('Itb', 'main/days'));
 $app->get('/list', \Itb\Utility::controller('Itb', 'main/list'));
 $app->post('/login', \Itb\Utility::controller('Itb', 'user/processlogin'));
 $app->post('/processlogin', \Itb\Utility::controller('Itb', 'user/loginsuccess'));
+$app->post('/create', \Itb\Utility::controller('Itb', 'main/createNewStudent'));
+
+$app->get('/insert', \Itb\Utility::controller('Itb', 'main/insert'));
+$app->get('/delete/{id}', \Itb\Utility::controller('Itb', 'main/delete'));
 
 $app['debug']=true;
 $app->run();
-//
+
 //// 404 - Page not found
 //$app->error(function (\Exception $e, $code) use ($app) {
 //    switch ($code) {

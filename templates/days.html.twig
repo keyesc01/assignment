@@ -11,28 +11,6 @@
 {# ----------------------------------------#}
 {% block main %}
 
-    {% if days %}
-
-        {% set num_days = days | length %}
-
-        <p>
-            Here are the classes on this week
-        </p>
-
-        <ul>
-            {% for day in days %}
-                <li>
-                    {{ day }}
-                </li>
-            {% endfor %}
-        </ul>
-
-    {% else %}
-
-        <p>
-            empty array - there are no days in the week!
-        </p>
-
-    {% endif %}
+    <p>does this work??</p>
 
 {% endblock %}

@@ -34,9 +34,15 @@ need add user, update , delete
                 <td>{{ student.joined }}</td>
                 <td>{{ student.lastGrade }} </td>
                 <td>{{ student.currentGrade }}</td>
+                <td><a href=""><input type="button" value="update row"></a></td>
+                <td>
+                    <form>
+                        <a href="/delete/{{ student.id }}"><input type="button" value="delete row"></a>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
 
    </table>
-<a href="/insert"> to insert page</a>
+<a href="/insert"><input type="button" value="Add to database"></a>
 {% endblock %}

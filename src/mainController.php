@@ -5,7 +5,7 @@ use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-class MainController extends DatabaseTable
+class MainController
 {
     public function indexAction(Request $request, Application $app)
     {
@@ -18,7 +18,7 @@ class MainController extends DatabaseTable
     public function adminAction(Request $request, Application $app)
     {
 //        $studentRepository = new StudentRepository();
-        $students = StudentRepository::getAll();
+        $students = Student::getAll();
 
         $argsArray = [
             'students' => $students
@@ -48,7 +48,7 @@ class MainController extends DatabaseTable
      */
     public function listAction(Request $request, Application $app)
     {
-        $studentRepository = new StudentRepository();
+        $studentRepository = new Student();
         $students = $studentRepository->getAll();
 
         $argsArray = [
@@ -79,17 +79,15 @@ class MainController extends DatabaseTable
         $templateName = 'days';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
-    public function insertAction(Request $request, Application $app, $id)
+    public function insertAction(Request $request, Application $app)
     {
-        print'boo';
-
-        $students = StudentRepository::getAll();
+        $students = Student::getAll();
 
         $argsArray = [
             'students' => $students
         ];
 
-        $templateName = 'insert';
+        $templateName = 'newStudentForm';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
 //        $db = new DatabaseManager();
 //        $connection = $db->getDbh();
@@ -98,5 +96,49 @@ class MainController extends DatabaseTable
 //        $statement->bindParam(':id', $id, \PDO::PARAM_INT);
 //        $queryWasSuccessful = $statement->execute();
 //        return $queryWasSuccessful;
+    }
+    public function deleteAction(Request $request, Application $app,$id)
+    {
+        $students = Student::delete($id);
+
+        $argsArray = [
+            'student' => $students
+        ];
+
+        $templateName = 'delete';
+
+
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+    public function createNewStudentAction(Request $request, Application $app)
+    {
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $joined = filter_input(INPUT_POST, 'joined', FILTER_SANITIZE_STRING);
+        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
+        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
+
+        $student= new Student();
+        $student->setUsername($username);
+        $student->setPassword($password);
+        $student->setJoined($joined);
+        $student->setLastGrade($lastGrade);
+        $student->setCurrentGrade($currentGrade);
+        $insertSuccess = Student::insert($student);
+
+        if($insertSuccess){
+            print 'success!!';
+            $templateName = 'days';
+            return $app['twig']->render($templateName . '.html.twig', []);
+        } else {
+            print 'wrong try again';
+            //$message = 'error - not able to CREATE item ';
+            //$message .= '<pre>';
+            // capture print_r output as a string
+            // $message .= print_r($student, true);
+            $templateName = 'newStudentForm';
+            return $app['twig']->render($templateName . '.html.twig', []);
+
+        }
     }
 }

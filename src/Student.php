@@ -1,25 +1,8 @@
 <?php
 namespace Itb;
+use Mattsmithdev\PdoCrud\DatabaseTable;
 
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 26/01/2016
- * Time: 10:44
- *
- * represent DVD objects for use in voting system
- *
- *
-<th> ID </th>
-<th> title </th>
-<th> category </th>
-<th> price </th>
-<th> vote average </th>
-<th> num votes </th>
-<th> stars </th>
- *
- */
-class Student
+class Student extends DatabaseTable
 {
     /**
      * the objects unique ID
@@ -86,5 +69,31 @@ class Student
     public function getCurrentGrade()
     {
         return $this->currentGrade;
+    }
+   
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function setJoined($joined)
+    {
+        $this->joined = $joined;
+    }
+
+    public function setLastGrade($lastGrade)
+    {
+        $this->lastGrade = $lastGrade;
+    }
+
+    public function setCurrentGrade($curGrade)
+    {
+        $this->currentGrade = $curGrade;
     }
 }

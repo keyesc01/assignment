@@ -30,6 +30,9 @@ class UserController extends DatabaseManager
             $argsArray = array('username' => $username);
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
+        else if($username == '' && $password == ''){
+            echo 'you must enter a username and password';
+        }
 
 
             // success - redirect to the secure admin home page

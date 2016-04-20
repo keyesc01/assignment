@@ -9,23 +9,13 @@
     </style>
 </head>
 <body>
-<section>
-    {#{% if username %}#}
-        {#<p>#}
-           {#Logged in as : {{ username }}#}
-        {#</p>#}
-        {#<hr>#}
-    {#{% endif %}#}
-
-</section>
-
 <nav>
     <ul>
         <li>
             <a href="index" class="{% block indexNavStyle %}{% endblock %}">Home page</a>
         </li>
         <li>
-            <a href="admin" class="{% block adminNavStyle %}{% endblock %}">Admin Login</a>
+            <a href="admin" class="{% block adminNavStyle %}{% endblock %}">Admin</a>
         </li>
         <li>
             <a href="members" class="{% block aboutNavStyle %}{% endblock %}">Member Login</a>
