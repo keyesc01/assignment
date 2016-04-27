@@ -11,7 +11,7 @@ class StudentTest extends \PHPUnit_Framework_TestCase
     {
         // Arrange
         $qm = new Student();
-        $expectedResult = 1;
+        $expectedResult = 0;
 
         // Act
         $result = $qm->getId();
