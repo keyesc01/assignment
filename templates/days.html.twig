@@ -10,14 +10,14 @@
 
 {# ----------------------------------------#}
 {% block main %}
-    {#<p>The classes for this week are as follows:</p>#}
-    {#{% for day in days %}#}
+    <p>The classes for this week are as follows:</p>
+    {% for day in days %}
 
-        {#<ul>#}
-            {#<li>{{ day }}</li>#}
-        {#</ul>#}
+        <ul>
+            <li>{{ day }}</li>
+        </ul>
 
-    {#{% endfor %}#}
-    {#<p>The run on the hour every hour from 10am -> 7pm:</p>#}
+    {% endfor %}
+    <p>The run on the hour every hour from 10am -> 7pm:</p>
 
 {% endblock %}

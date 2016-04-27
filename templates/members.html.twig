@@ -3,7 +3,9 @@
 {% block title %}Member login{% endblock %}
 
 {% block main %}
-
+    {% if message is defined %}
+        {{ message }}
+    {% endif %}
     <h1>Please login</h1>
     <form method="post" action="/login">
         <p>

@@ -32,20 +32,4 @@ $app->post('/processlogin','Itb\Controller\UserController::loginsuccessAction');
 $app['debug']=true;
 $app->run();
 
-//// 404 - Page not found
-//$app->error(function (\Exception $e, $code) use ($app) {
-//    switch ($code) {
-//        case 404:
-//            $message = 'The requested page could not be found.';
-//            return \Itb\MainController::error404($app, $message);
-//
-//        default:
-//            $message = 'We are sorry, but something went terribly wrong.';
-//            return \Itb\MainController::error404($app, $message);
-//    }
-//});
-//
-//// run Silex front controller
-//// ------------
-//
 

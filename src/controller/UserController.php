@@ -6,50 +6,49 @@
  * Time: 09:20
  */
 
-namespace Itb\Controller;
+namespace Itb\controller;
 
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Itb\Model\Student;
 
 class UserController extends DatabaseManager
 {
     // action for POST route:    /processLogin
     public function processLoginAction(Request $request, Application $app)
     {
-        // retrieve 'name' from GET params in Request object
-        $username = $request->get('username');
-        $password = $request->get('password');
+        // default is bad login
+        $isLoggedIn = false;
 
-        // authenticate!
-        if ($username != '' && $password != '') {
-            // store username in 'user' in 'session'
-            $app['session']->set('user', array('username' => $username));
+        $username =$request->get('username');
+        $password =$request->get('password');
 
+
+        // search for user with username in repository
+        $isLoggedIn = MainController::canFindMatchingUsernameAndPassword($username, $password);
+
+
+        $argsArray = ['user' => $username];
+        // action depending on login success
+        if ($isLoggedIn) {
             $templateName = 'loginSuccess';
-            $argsArray = array('username' => $username);
+            return $app['twig']->render($templateName . '.html.twig', $argsArray);
+        } else {
+            $message = 'bad username or password, please try again';
+            $argsArray = [
+                'message' => $message
+            ];
+            $templateName = 'members';
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
-        else if($username == '' && $password == ''){
-            echo 'you must enter a username and password';
-        }
-
-
-            // success - redirect to the secure admin home page
-           // return $app->redirect('admin');
-        $templateName = 'members';
-        $argsArray = array(
-            'errorMessage' => 'bad username or password - please re-enter'
-        );
-
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
     // action for route:    /login
     public function loginAction(Request $request, Application $app)
     {
         // logout any existing user
-        $app['session']->set('user', null );
+        $app['session']->set('user', null);
 
         // build args array
         // ------------
@@ -65,7 +64,7 @@ class UserController extends DatabaseManager
     public function logoutAction(Request $request, Application $app)
     {
         // logout any existing user
-        $app['session']->set('user', null );
+        $app['session']->set('user', null);
 
         // redirect to home page
 //        return $app->redirect('');
@@ -74,9 +73,5 @@ class UserController extends DatabaseManager
         // ------------
         $templateName = 'index';
         return $app['twig']->render($templateName . '.html.twig', []);
-
     }
-
-
-
 }

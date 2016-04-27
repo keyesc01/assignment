@@ -1,5 +1,6 @@
 <?php
-namespace Itb\Controller;
+namespace Itb\controller;
+
 use Itb\Model\Student;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
@@ -17,7 +18,7 @@ class MainController
     }
     public function adminAction(Request $request, Application $app)
     {
-//        $studentRepository = new StudentRepository();
+        //        $studentRepository = new StudentRepository();
         $students = Student::getAll();
 
         $argsArray = [
@@ -97,7 +98,7 @@ class MainController
 //        $queryWasSuccessful = $statement->execute();
 //        return $queryWasSuccessful;
     }
-    public function deleteAction(Request $request, Application $app,$id)
+    public function deleteAction(Request $request, Application $app, $id)
     {
         $students = Student::delete($id);
 
@@ -110,7 +111,7 @@ class MainController
 //        return $app['twig']->render($templateName . '.html.twig', $argsArray);
         return $app->redirect('/admin');
     }
-    public function updateAction(Request $request, Application $app,$id)
+    public function updateAction(Request $request, Application $app, $id)
     {
         $student = Student::getOneById($id);
 
@@ -120,16 +121,20 @@ class MainController
 
         $templateName = 'updateStudentForm';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
-
-
     }
     public function createNewStudentAction(Request $request, Application $app)
     {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-        $joined = filter_input(INPUT_POST, 'joined', FILTER_SANITIZE_STRING);
-        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
-        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $joined = $request->get('joined');
+        $lastGrade = $request->get('lastGrade');
+        $currentGrade = $request->get('currentGrade');
+
+//        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+//        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+//        $joined = filter_input(INPUT_POST, 'joined', FILTER_SANITIZE_STRING);
+//        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
+//        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
 
         $student= new Student();
         $student->setUsername($username);
@@ -139,10 +144,9 @@ class MainController
         $student->setCurrentGrade($currentGrade);
         $insertSuccess = Student::insert($student);
 
-        if($insertSuccess){
+        if ($insertSuccess) {
             return $app->redirect('/admin');
-        }
-        else {
+        } else {
             print 'wrong try again';
             //$message = 'error - not able to CREATE item ';
             //$message .= '<pre>';
@@ -150,12 +154,10 @@ class MainController
             // $message .= print_r($student, true);
             $templateName = 'newStudentForm';
             return $app['twig']->render($templateName . '.html.twig', []);
-
         }
     }
-    public function updateUserAction(Request $request, Application $app,$id)
+    public function updateUserAction(Request $request, Application $app, $id)
     {
-
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 //        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
@@ -172,7 +174,7 @@ class MainController
         $student->setCurrentGrade($currentGrade);
         $insertSuccess = Student::update($student);
 
-        if($insertSuccess){
+        if ($insertSuccess) {
             return $app->redirect('/admin');
         } else {
             print 'wrong try again';
@@ -182,10 +184,44 @@ class MainController
             // $message .= print_r($student, true);
             $templateName = 'updateStudentForm';
             return $app['twig']->render($templateName . '.html.twig', []);
-
         }
     }
+    public static function canFindMatchingUsernameAndPassword($username, $password)
+    {
+        $user = Student::getOneByUsername($username);
 
+        // if no record has this username, return FALSE
+        if (null == $user) {
+            return false;
+        }
 
+        // hashed correct password
+        $hashedStoredPassword = $user->getPassword();
 
+//        print $hashedStoredPassword. $password;
+//        die();
+        // return whether or not hash of input password matches stored hash
+        return password_verify($password, $hashedStoredPassword);
+    }
+
+    // return whether or not hash of input password matches stored hash
+    //return password_verify($password, $hashedStoredPassword);
+
+    public static function getOneByUsername($username)
+    {
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        $sql = 'SELECT * FROM students WHERE username=:username';
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':username', $username, \PDO::PARAM_STR);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->execute();
+
+        if ($object = $statement->fetch()) {
+            return $object;
+        } else {
+            return null;
+        }
+    }
 }

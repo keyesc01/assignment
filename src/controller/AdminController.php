@@ -6,7 +6,7 @@
  * Time: 09:22
  */
 
-namespace Itb\Controller;
+namespace Itb\controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,6 @@ class AdminController
 {
     public function isAuthenticated()
     {
-
     }
 
     // action for route:    /admin
@@ -38,7 +37,7 @@ class AdminController
 
         // check we are authenticated --------
         $isAuthenticated = (null != $username);
-        if(!$isAuthenticated){
+        if (!$isAuthenticated) {
             // not authenticated, so redirect to LOGIN page
             return $app->redirect('login');
         }
@@ -63,7 +62,7 @@ class AdminController
 
         // check we are authenticated --------
         $isAuthenticated = (null != $username);
-        if(!$isAuthenticated){
+        if (!$isAuthenticated) {
             // not authenticated, so redirect to LOGIN page
             return $app->redirect('login');
         }
@@ -78,5 +77,4 @@ class AdminController
         $templateName = 'admin/codes';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
-
 }
