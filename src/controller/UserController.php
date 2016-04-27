@@ -13,9 +13,19 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Itb\Model\Student;
 
+/**
+ * Class UserController
+ * @package Itb\controller
+ */
 class UserController extends DatabaseManager
 {
     // action for POST route:    /processLogin
+    /**
+     * login process
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function processLoginAction(Request $request, Application $app)
     {
         // default is bad login
@@ -45,6 +55,12 @@ class UserController extends DatabaseManager
     }
 
     // action for route:    /login
+    /**
+     * login action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function loginAction(Request $request, Application $app)
     {
         // logout any existing user
@@ -61,6 +77,12 @@ class UserController extends DatabaseManager
     }
 
     // action for route:    /logout
+    /**
+     * logout action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function logoutAction(Request $request, Application $app)
     {
         // logout any existing user

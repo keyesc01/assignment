@@ -24,12 +24,16 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AdminController
 {
-    public function isAuthenticated()
-    {
-    }
+
 
     // action for route:    /admin
     // will we allow access to the Admin home?
+    /**
+     * index action
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function indexAction(Request $request, Application $app)
     {
         // test if 'username' stored in session ...
@@ -55,6 +59,12 @@ class AdminController
 
     // action for route:    /adminCodes
     // will we allow access to the Admin home?
+    /**
+     * codes action
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function codesAction(Request $request, Application $app)
     {
         // test if 'username' stored in session ...

@@ -1,4 +1,7 @@
 <?php
+/**
+ * main conreoller
+ */
 namespace Itb\controller;
 
 use Itb\Model\Student;
@@ -6,8 +9,18 @@ use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class MainController
+ * @package Itb\controller
+ */
 class MainController
 {
+    /**
+     * index action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function indexAction(Request $request, Application $app)
     {
         $argsArray = [];
@@ -16,6 +29,13 @@ class MainController
         $templateName = 'index';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+
+    /**
+     * admin action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function adminAction(Request $request, Application $app)
     {
         //        $studentRepository = new StudentRepository();
@@ -31,9 +51,11 @@ class MainController
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
-
     /**
-     * render the About page template
+     * members action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function membersAction(Request $request, Application $app)
     {
@@ -45,7 +67,10 @@ class MainController
     }
 
     /**
-     * render the Index page template
+     * list action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function listAction(Request $request, Application $app)
     {
@@ -59,8 +84,12 @@ class MainController
         $templateName = 'list';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+
     /**
-     * render the days page template
+     * days action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
      */
     public function daysAction(Request $request, Application $app)
     {
@@ -80,6 +109,13 @@ class MainController
         $templateName = 'days';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+
+    /**
+     * insert action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function insertAction(Request $request, Application $app)
     {
         $students = Student::getAll();
@@ -98,6 +134,14 @@ class MainController
 //        $queryWasSuccessful = $statement->execute();
 //        return $queryWasSuccessful;
     }
+
+    /**
+     * delete action
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction(Request $request, Application $app, $id)
     {
         $students = Student::delete($id);
@@ -111,6 +155,14 @@ class MainController
 //        return $app['twig']->render($templateName . '.html.twig', $argsArray);
         return $app->redirect('/admin');
     }
+
+    /**
+     * update action
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return mixed
+     */
     public function updateAction(Request $request, Application $app, $id)
     {
         $student = Student::getOneById($id);
@@ -122,6 +174,13 @@ class MainController
         $templateName = 'updateStudentForm';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
+
+    /**
+     * new student
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function createNewStudentAction(Request $request, Application $app)
     {
         $username = $request->get('username');
@@ -156,6 +215,14 @@ class MainController
             return $app['twig']->render($templateName . '.html.twig', []);
         }
     }
+
+    /**
+     * update students info
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function updateUserAction(Request $request, Application $app, $id)
     {
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -186,6 +253,13 @@ class MainController
             return $app['twig']->render($templateName . '.html.twig', []);
         }
     }
+
+    /**
+     * find username password in db
+     * @param $username
+     * @param $password
+     * @return bool
+     */
     public static function canFindMatchingUsernameAndPassword($username, $password)
     {
         $user = Student::getOneByUsername($username);
@@ -206,7 +280,11 @@ class MainController
 
     // return whether or not hash of input password matches stored hash
     //return password_verify($password, $hashedStoredPassword);
-
+    /**
+     * find by username
+     * @param $username
+     * @return null
+     */
     public static function getOneByUsername($username)
     {
         $db = new DatabaseManager();

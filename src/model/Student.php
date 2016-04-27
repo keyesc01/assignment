@@ -1,4 +1,7 @@
 <?php
+/**
+ * student class
+ */
 namespace Itb\model;
 
 use Mattsmithdev\PdoCrud\DatabaseTable;
@@ -17,17 +20,19 @@ class Student extends DatabaseTable
     private $id;
 
     /**
+     * username
      * @var string $username
      */
     private $username;
 
     /**
-     *
+     *password
      * @var string $password
      */
     private $password;
 
     /**
+     * date joined
      * @var date $joined
      */
     private $joined;
@@ -39,6 +44,7 @@ class Student extends DatabaseTable
     private $lastGrade;
 
     /**
+     * current grade
      * @var char $currentGrade
      */
     private $currentGrade;
@@ -99,6 +105,7 @@ class Student extends DatabaseTable
     }
 
     /**
+     * set the username
      * @param $username
      */
     public function setUsername($username)
@@ -107,6 +114,7 @@ class Student extends DatabaseTable
     }
 
     /**
+     * set the password
      * @param $password
      */
     public function setPassword($password)
@@ -116,6 +124,7 @@ class Student extends DatabaseTable
     }
 
     /**
+     * set the date joined
      * @param $joined
      */
     public function setJoined($joined)
@@ -124,6 +133,7 @@ class Student extends DatabaseTable
     }
 
     /**
+     * set the last grade
      * @param $lastGrade
      */
     public function setLastGrade($lastGrade)
@@ -132,6 +142,7 @@ class Student extends DatabaseTable
     }
 
     /**
+     * set the current grade
      * @param $curGrade
      */
     public function setCurrentGrade($curGrade)

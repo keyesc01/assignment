@@ -13,4 +13,10 @@
             <directory>src/</directory>
         </whitelist>
     </filter>
+    <php>
+        <const name="DB_HOST" value="localhost"/>
+        <const name="DB_NAME" value="student"/>
+        <const name="DB_USER" value="root"/>
+        <const name="DB_PASS" value=""/>
+    </php>
 </phpunit>

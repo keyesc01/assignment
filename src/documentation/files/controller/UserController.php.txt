@@ -6,16 +6,26 @@
  * Time: 09:20
  */
 
-namespace Itb\Controller;
+namespace Itb\controller;
 
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Itb\Model\Student;
 
+/**
+ * Class UserController
+ * @package Itb\controller
+ */
 class UserController extends DatabaseManager
 {
     // action for POST route:    /processLogin
+    /**
+     * login process
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function processLoginAction(Request $request, Application $app)
     {
         // default is bad login
@@ -31,7 +41,7 @@ class UserController extends DatabaseManager
 
         $argsArray = ['user' => $username];
         // action depending on login success
-        if($isLoggedIn){
+        if ($isLoggedIn) {
             $templateName = 'loginSuccess';
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         } else {
@@ -45,10 +55,16 @@ class UserController extends DatabaseManager
     }
 
     // action for route:    /login
+    /**
+     * login action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function loginAction(Request $request, Application $app)
     {
         // logout any existing user
-        $app['session']->set('user', null );
+        $app['session']->set('user', null);
 
         // build args array
         // ------------
@@ -61,10 +77,16 @@ class UserController extends DatabaseManager
     }
 
     // action for route:    /logout
+    /**
+     * logout action
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function logoutAction(Request $request, Application $app)
     {
         // logout any existing user
-        $app['session']->set('user', null );
+        $app['session']->set('user', null);
 
         // redirect to home page
 //        return $app->redirect('');
@@ -73,9 +95,6 @@ class UserController extends DatabaseManager
         // ------------
         $templateName = 'index';
         return $app['twig']->render($templateName . '.html.twig', []);
-
     }
-
-
-
 }
+
