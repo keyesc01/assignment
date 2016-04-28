@@ -17,23 +17,24 @@ nav li {
 nav a {
     display: block;
     padding: 1rem;
-    background-color: lightgreen;
+    background-color: #9aee72;
 
     text-align: center;
     border: 0.1rem solid black;
-
+    border-radius: 20px;
     text-decoration: none;
     color: blue;
 }
 
 nav a:hover {
     background-color: black;
-    color: white;
-
+    color: #ffffff;
+    border-radius: 20px;
     text-decoration: underline;
 }
 
 nav a.current_page {
-    background-color: grey;
-    color: yellow;
+    background-color: #faf0fd;
+    color: #000000;
+    border-radius: 20px;
 }

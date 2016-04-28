@@ -15,23 +15,20 @@
 
     <h1>Welcome to the Admin home page !</h1>
 
-    <h2>What is in the student db table</h2>
-need add user, update , delete
+    <h3>Student table</h3>
+
     <table>
         <tr>
-            <th> id </th>
-            <th> username </th>
-            <th> password </th>
-            <th> joined </th>
-            <th> last grade </th>
-            <th> current grade</th>
+            <th> Id </th>
+            <th> Username </th>
+            <th> Last Grade </th>
+            <th> Current Grade</th>
+            <th> Date Joined </th>
         </tr>
         {% for student in students %}
             <tr>
                 <td>{{ student.id }}</td>
                 <td>{{ student.username }}</td>
-                <td>{{ student.password }}</td>
-                <td>{{ student.joined }}</td>
                 <td>{{ student.lastGrade }} </td>
                 <td>{{ student.currentGrade }}</td>
                 <td>{{ student.date }}</td>
@@ -47,7 +44,7 @@ need add user, update , delete
    </table>
 <a href="/insert"><input type="button" value="Add to database"></a>
 
-    <p>Grades table</p>
+    <h3>Grades table</h3>
     <table>
         <tr>
             <th> id </th>
@@ -56,6 +53,25 @@ need add user, update , delete
 
         </tr>
         {% for grade in gradings %}
+            <tr>
+                <td>{{ grade.id }}</td>
+                <td>{{ grade.studentId }}</td>
+                <td>{{ grade.date }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <h3>Attendance table</h3>
+    <table>
+        <tr>
+            <th> id </th>
+            <th> studentId </th>
+            <th> date </th>
+
+        </tr>
+        {% for anttend in attendances %}
             <tr>
                 <td>{{ grade.id }}</td>
                 <td>{{ grade.studentId }}</td>

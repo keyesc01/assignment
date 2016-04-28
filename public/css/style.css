@@ -1,12 +1,12 @@
 body {
-    background-color: lightblue;
+    background-color: #c8c5a9;
 }
 
 footer {
-    border-top: 0.1rem red solid;
+    border-bottom: 0.1rem solid black;
     padding: 1.5rem;
     text-align: center;
-    background-color: lightblue;
+    background-color: #70ee4b;
 }
 table {
     border: 0.1px black solid;
