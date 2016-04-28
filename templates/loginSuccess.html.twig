@@ -1,15 +1,49 @@
-{% extends '_base.html.twig' %}
+{#{% extends '_base.html.twig' %}#}
 
 {# ----------------------------------------#}
-{% block title %}
-    Success
-{% endblock %}
 
-{# ----------------------------------------#}
-{% block indexNavStyle %}current_page{% endblock %}
 
-{# ----------------------------------------#}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "/../css/style.css";
+        @import "/../css/nav.css";
+    </style>
+</head>
+<body>
+
 
 {% block main %}
-    well done {{ user }} , you have successfully logged in to the system.
+    {#well done {{ username }} , you have successfully logged in to the system.#}
+
+    <h2>{{ username }}, here is your stats</h2>   <a href="/logout"><input type="button" value="Logout"> </a>
+    <table>
+        <tr>
+            <th> id </th>
+            <th> username </th>
+            <th> joined </th>
+            <th> last grade </th>
+            <th> current grade</th>
+        </tr>
+
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.username }}</td>
+                <td>{{ student.joined }}</td>
+                <td>{{ student.lastGrade }} </td>
+                <td>{{ student.currentGrade }}</td>
+
+            </tr>
+
+    </table>
+
 {% endblock %}
+
+<footer>
+    2016 Ciaran Keyes WebFrameWork Project
+</footer>
+</body>
+</html>

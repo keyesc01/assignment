@@ -5,6 +5,7 @@
 namespace Itb\controller;
 
 use Itb\Model\Student;
+use Itb\Model\Grading;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,12 +41,12 @@ class MainController
     {
         //        $studentRepository = new StudentRepository();
         $students = Student::getAll();
+        $gradings = Grading::getAll();
 
         $argsArray = [
-            'students' => $students
+            'students' => $students,
+            'gradings' => $gradings
         ];
-
-
 
         $templateName = 'admin';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
@@ -74,11 +75,15 @@ class MainController
      */
     public function listAction(Request $request, Application $app)
     {
-        $studentRepository = new Student();
-        $students = $studentRepository->getAll();
+        //$studentRepository = new Student();
+        $students = Student::getAll();
+
+//        $gradeRepository = new Grading();
+        $gradings = Grading::getAll();
 
         $argsArray = [
-            'students' => $students
+            'students' => $students,
+            'gradings' => $gradings
         ];
 
         $templateName = 'list';
@@ -203,6 +208,14 @@ class MainController
         $student->setCurrentGrade($currentGrade);
         $insertSuccess = Student::insert($student);
 
+  //      $grade = new Grading();
+
+//        $date=(date("Y-m-d-h:i:sa"));
+
+        //$grade->setDate($date);
+        //$dateSuccess = Grading::insert($grade);
+
+
         if ($insertSuccess) {
             return $app->redirect('/admin');
         } else {
@@ -276,30 +289,5 @@ class MainController
 //        die();
         // return whether or not hash of input password matches stored hash
         return password_verify($password, $hashedStoredPassword);
-    }
-
-    // return whether or not hash of input password matches stored hash
-    //return password_verify($password, $hashedStoredPassword);
-    /**
-     * find by username
-     * @param $username
-     * @return null
-     */
-    public static function getOneByUsername($username)
-    {
-        $db = new DatabaseManager();
-        $connection = $db->getDbh();
-
-        $sql = 'SELECT * FROM students WHERE username=:username';
-        $statement = $connection->prepare($sql);
-        $statement->bindParam(':username', $username, \PDO::PARAM_STR);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
-        $statement->execute();
-
-        if ($object = $statement->fetch()) {
-            return $object;
-        } else {
-            return null;
-        }
     }
 }

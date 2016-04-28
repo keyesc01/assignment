@@ -11,7 +11,11 @@ namespace Itb\controller;
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Itb\Controller\MainController;
 use Itb\Model\Student;
+use Itb\Model\Grading;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class UserController
@@ -30,19 +34,31 @@ class UserController extends DatabaseManager
     {
         // default is bad login
         $isLoggedIn = false;
-
         $username =$request->get('username');
         $password =$request->get('password');
 
 
+        $date = (date("Y-m-d-h:i:sa"));
+        echo $date;
+
+        $student = Student::getOneByUsername($username);
+
         // search for user with username in repository
         $isLoggedIn = MainController::canFindMatchingUsernameAndPassword($username, $password);
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $argsArray = [
+            'username' => $username,
+            'student' => $student
+        ];
 
-        $argsArray = ['user' => $username];
         // action depending on login success
         if ($isLoggedIn) {
             $templateName = 'loginSuccess';
+
+            session_start();
+
+
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         } else {
             $message = 'bad username or password, please try again';

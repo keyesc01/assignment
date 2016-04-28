@@ -34,6 +34,7 @@ need add user, update , delete
                 <td>{{ student.joined }}</td>
                 <td>{{ student.lastGrade }} </td>
                 <td>{{ student.currentGrade }}</td>
+                <td>{{ student.date }}</td>
                 <td><a href="/update/{{ student.id }}"><input type="button" value="update row"></a></td>
                 <td>
                     <form>
@@ -45,4 +46,23 @@ need add user, update , delete
 
    </table>
 <a href="/insert"><input type="button" value="Add to database"></a>
+
+    <p>Grades table</p>
+    <table>
+        <tr>
+            <th> id </th>
+            <th> studentId </th>
+            <th> date </th>
+
+        </tr>
+        {% for grade in gradings %}
+            <tr>
+                <td>{{ grade.id }}</td>
+                <td>{{ grade.studentId }}</td>
+                <td>{{ grade.date }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
 {% endblock %}

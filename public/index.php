@@ -27,9 +27,13 @@ $app->post('/updateUser/{id}', 'Itb\Controller\MainController::updateUserAction'
 
 $app->post('/login', 'Itb\Controller\UserController::processloginAction');
 $app->post('/processlogin','Itb\Controller\UserController::loginsuccessAction');
+$app->get('/logout', 'Itb\Controller\UserController::logoutAction');
 
 
 $app['debug']=true;
 $app->run();
+
+
+
 
 
