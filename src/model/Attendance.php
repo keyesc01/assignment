@@ -1,0 +1,79 @@
+<?php
+/**
+ * student class
+ */
+namespace Itb\model;
+
+use Mattsmithdev\PdoCrud\DatabaseTable;
+use Mattsmithdev\PdoCrud\DatabaseManager;
+
+/**
+ * Class Attendance
+ * @package Itb\Model
+ */
+class Attendance extends DatabaseTable
+{
+    /**
+     * the objects unique ID
+     * @var int $id
+     */
+    private $id;
+    /**
+     * student id
+     * @var int
+     */
+    private $studentId;
+
+    /**
+     * date
+     * @var string
+     */
+    private $date;
+
+
+    /**
+     * get id
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * get student id
+     * @return int
+     */
+    public function getStudentId()
+    {
+        return $this->studentId;
+    }
+
+    /**
+     * set student id
+     * @param int $studentId
+     */
+    public function setStudentId($studentId)
+    {
+        $this->studentId = $studentId;
+    }
+
+    /**
+     * get date
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * set date
+     * @param string $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+}

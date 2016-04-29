@@ -1,14 +1,14 @@
 <?php
 namespace ItbTest;
 
-use Itb\Model\Grading;
+use Itb\Model\Attendance;
 
-class GradingTest extends \PHPUnit_Framework_TestCase
+class AttendanceTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanGetId()
     {
         // Arrange
-        $qm = new Grading();
+        $qm = new Attendance();
         $expectedResult = 0;
 
         // Act
@@ -22,7 +22,7 @@ class GradingTest extends \PHPUnit_Framework_TestCase
     public function testCanGetStudentID()
     {
         // Arrange
-        $qm = new Grading();
+        $qm = new Attendance();
         $expectedResult = 0;
 
         // Act
@@ -35,7 +35,7 @@ class GradingTest extends \PHPUnit_Framework_TestCase
     public function testCanSetStudentID()
     {
         // arrange
-        $qm = new Grading();
+        $qm = new Attendance();
         $expectedResult = '0';
         $qm ->setStudentId($expectedResult);
 
@@ -49,7 +49,7 @@ class GradingTest extends \PHPUnit_Framework_TestCase
     public function testCanGetDate()
     {
         // Arrange
-        $qm = new Grading();
+        $qm = new Attendance();
         $expectedResult = 0;
 
         // Act
@@ -62,7 +62,7 @@ class GradingTest extends \PHPUnit_Framework_TestCase
     public function testCanSetDate()
     {
         // arrange
-        $qm = new Grading();
+        $qm = new Attendance();
         $expectedResult = '00/00/0000';
         $qm ->setDate($expectedResult);
 

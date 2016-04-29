@@ -6,6 +6,7 @@ namespace Itb\controller;
 
 use Itb\Model\Student;
 use Itb\Model\Grading;
+use Itb\Model\Attendance;
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,10 +43,12 @@ class MainController
         //        $studentRepository = new StudentRepository();
         $students = Student::getAll();
         $gradings = Grading::getAll();
+        $attendaces = Attendance::getAll();
 
         $argsArray = [
             'students' => $students,
-            'gradings' => $gradings
+            'gradings' => $gradings,
+            'attendances' => $attendaces
         ];
 
         $templateName = 'admin';
