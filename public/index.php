@@ -14,7 +14,7 @@ $app->get('/admin', 'Itb\Controller\MainController::adminAction');
 
 $app->get('/members', 'Itb\Controller\MainController::membersAction');
 $app->get('/days', 'Itb\Controller\MainController::daysAction');
-$app->get('/list', 'Itb\Controller\MainController::listAction');
+//$app->get('/list', 'Itb\Controller\MainController::listAction');
 $app->post('/create', 'Itb\Controller\MainController::createNewStudentAction');
 
 

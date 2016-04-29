@@ -1,8 +1,15 @@
 body {
     background-color: #c8c5a9;
+    /*background-image: url("../images/karate.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100% 100%;*/
+    /*background-attachment: fixed;*/
+
 }
 
+
 footer {
+    /*margin-top: 30%;*/
     border-bottom: 0.1rem solid black;
     padding: 1.5rem;
     text-align: center;
@@ -14,3 +21,4 @@ table {
 td {
     border: 0.1px black solid;
 }
+

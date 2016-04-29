@@ -47,9 +47,9 @@
     <h3>Grades table</h3>
     <table>
         <tr>
-            <th> id </th>
-            <th> studentId </th>
-            <th> date </th>
+            <th> Id </th>
+            <th> StudentId </th>
+            <th> Date </th>
 
         </tr>
         {% for grade in gradings %}
@@ -66,17 +66,32 @@
     <h3>Attendance table</h3>
     <table>
         <tr>
-            <th> id </th>
-            <th> studentId </th>
-            <th> date </th>
+            <th> Id </th>
+            <th> Username </th>
+            <th> Date </th>
 
         </tr>
         {% for anttend in attendances %}
             <tr>
-                <td>{{ grade.id }}</td>
-                <td>{{ grade.studentId }}</td>
-                <td>{{ grade.date }}</td>
+                <td>{{ anttend.id }}</td>
+                <td>{{ anttend.username }}</td>
+                <td>{{ anttend.date }}</td>
 
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <h3>Techniques table</h3>
+    <table>
+        <tr>
+            <th> Id </th>
+            <th> Description </th>
+        </tr>
+        {% for technique in techniques %}
+            <tr>
+                <td>{{ technique.id }}</td>
+                <td>{{ technique.description }}</td>
             </tr>
         {% endfor %}
 

@@ -32,13 +32,33 @@
             <tr>
                 <td>{{ student.id }}</td>
                 <td>{{ student.username }}</td>
-                <td>{{ student.joined }}</td>
+                <td>{{ student.date }}</td>
                 <td>{{ student.lastGrade }} </td>
                 <td>{{ student.currentGrade }}</td>
-
             </tr>
 
     </table>
+    <p>What class are you attending today?
+        {% for descrip in description %}
+            <button>{{ descrip.description }}</button> not doing anything!!!!!
+        {% endfor %}
+    </p>
+
+    <h3>Attendance table</h3>
+    <table>
+        <tr>
+            <th>Attendance Date's</th>
+        </tr>
+        {% for attend in attendants %}
+            <tr>
+
+                <td>{{ attend.date }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
 
 {% endblock %}
 

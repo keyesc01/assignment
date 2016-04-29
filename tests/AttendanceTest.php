@@ -19,28 +19,28 @@ class AttendanceTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testCanGetStudentID()
+    public function testCanGetUsername()
     {
         // Arrange
         $qm = new Attendance();
         $expectedResult = 0;
 
         // Act
-        $result = $qm->getStudentId();
+        $result = $qm->getUsername();
 
         // Assert
         $this->assertEquals($expectedResult, $result);
 
     }
-    public function testCanSetStudentID()
+    public function testCanSetUsername()
     {
         // arrange
         $qm = new Attendance();
-        $expectedResult = '0';
-        $qm ->setStudentId($expectedResult);
+        $expectedResult = 'ciaran';
+        $qm ->setUsername($expectedResult);
 
         // Act
-        $result = $qm->getStudentId();
+        $result = $qm->getUsername();
 
         // Assert
         $this->assertEquals($expectedResult, $result);

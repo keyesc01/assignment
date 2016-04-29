@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Itb\Controller\MainController;
 use Itb\Model\Student;
 use Itb\Model\Grading;
+use Itb\Model\Attendance;
+use Itb\Model\Technique;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -34,31 +36,47 @@ class UserController extends DatabaseManager
     {
         // default is bad login
         $isLoggedIn = false;
+
         $username =$request->get('username');
         $password =$request->get('password');
 
-
-        $date = (date("Y-m-d-h:i:sa"));
-        echo $date;
-
-        $student = Student::getOneByUsername($username);
-
         // search for user with username in repository
         $isLoggedIn = MainController::canFindMatchingUsernameAndPassword($username, $password);
+//       $timestamp =  UserController::registertimeLogin();
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $argsArray = [
-            'username' => $username,
-            'student' => $student
-        ];
-
+        $argsArray = ['username' => $username];
         // action depending on login success
         if ($isLoggedIn) {
+
+//            if($username == "admin")
+//            {
+//                $students = student::getAll();
+//
+//                $argsArray = [
+//                    'students' => $students,
+//                ];
+//                $templateName = 'admin';
+//                return $app['twig']->render($templateName . '.html.twig', $argsArray);
+//            }
+            $students = Student::getOneByUsername($username);
+            $classes = Technique::getAll();
+
+
+            $attendee = new Attendance();
+            $attendee->setUsername($username);
+
+            $insertSuccess = Attendance::insert($attendee);
+
+            $attendences = Attendance::searchByColumn('username', $username);
+            //$attendences = attendence::getOneByUsername($username);
+            $argsArray = [
+                'student' => $students,
+                'username' => $username,
+                'attendants' => $attendences,
+                'description' => $classes
+            ];
+
             $templateName = 'loginSuccess';
-
-            session_start();
-
-
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         } else {
             $message = 'bad username or password, please try again';
@@ -69,6 +87,7 @@ class UserController extends DatabaseManager
             return $app['twig']->render($templateName . '.html.twig', $argsArray);
         }
     }
+
 
     // action for route:    /login
     /**

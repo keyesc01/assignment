@@ -19,10 +19,10 @@ class Attendance extends DatabaseTable
      */
     private $id;
     /**
-     * student id
-     * @var int
+     * username
+     * @var string
      */
-    private $studentId;
+    private $username;
 
     /**
      * date
@@ -45,18 +45,18 @@ class Attendance extends DatabaseTable
      * get student id
      * @return int
      */
-    public function getStudentId()
+    public function getUsername()
     {
-        return $this->studentId;
+        return $this->username;
     }
 
     /**
      * set student id
      * @param int $studentId
      */
-    public function setStudentId($studentId)
+    public function setUsername($username)
     {
-        $this->studentId = $studentId;
+        $this->username = $username;
     }
 
     /**
@@ -75,5 +75,22 @@ class Attendance extends DatabaseTable
     public function setDate($date)
     {
         $this->date = $date;
+    }
+    public static function getOneByUsername($username)
+    {
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        $sql = 'SELECT * FROM attendances WHERE username=:username';
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':username', $username, \PDO::PARAM_STR);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->execute();
+
+        if ($object = $statement->fetch()) {
+            return $object;
+        } else {
+            return null;
+        }
     }
 }
