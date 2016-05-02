@@ -46,18 +46,18 @@ class MainController
 
             //        $studentRepository = new StudentRepository();
             $students = Student::getAll();
-            $gradings = Grading::getAll();
-            $attendances = Attendance::getAll();
-            $techniques = Technique::getAll();
+        $gradings = Grading::getAll();
+        $attendances = Attendance::getAll();
+        $techniques = Technique::getAll();
 
-            $argsArray = [
+        $argsArray = [
                 'students' => $students,
                 'gradings' => $gradings,
                 'attendances' => $attendances,
                 'techniques' => $techniques
             ];
 
-            $templateName = 'admin';
+        $templateName = 'admin';
 
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
@@ -351,13 +351,12 @@ class MainController
     {
         $belts = Belt::getAll();
 
-       $argsarray = [
+        $argsarray = [
            'belts' => $belts
        ];
         $templateName = 'belts';
 
         return $app['twig']->render($templateName . '.html.twig', $argsarray);
-
     }
 
     /**
@@ -412,8 +411,7 @@ class MainController
 
         $timeSinceLastGrading = $this->lastGrade($lastGrade);
 
-        if($timeSinceLastGrading >= 2){
-
+        if ($timeSinceLastGrading >= 2) {
             $message = 'Its time to upgrade to the next belt';
 
             $argsarray = [
@@ -421,8 +419,7 @@ class MainController
                 'message' => $message
             ];
             $templateName = 'lastGrade';
-        }
-        else{
+        } else {
             $message = 'Still need more training!';
             $argsarray = [
                 'lastGrade' => $timeSinceLastGrading,
@@ -432,6 +429,5 @@ class MainController
         }
         return $app['twig']->render($templateName . '.html.twig', $argsarray);
     }
-
 }
 

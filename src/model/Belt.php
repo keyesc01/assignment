@@ -52,6 +52,4 @@ class Belt extends DatabaseTable
     {
         $this->name = $name;
     }
-
-
 }

@@ -42,5 +42,3 @@ $app->get('/logout', 'Itb\Controller\UserController::logoutAction');
 
 $app['debug']=true;
 $app->run();
-
-
