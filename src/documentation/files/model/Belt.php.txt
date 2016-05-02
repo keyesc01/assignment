@@ -55,3 +55,4 @@ class Belt extends DatabaseTable
 
 
 }
+

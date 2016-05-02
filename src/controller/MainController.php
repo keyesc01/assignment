@@ -287,6 +287,13 @@ class MainController
         // return whether or not hash of input password matches stored hash
         return password_verify($password, $hashedStoredPassword);
     }
+
+    /**
+     * get all belts
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public static function beltAction(Request $request, Application $app)
     {
         $belts = Belt::getAll();
@@ -300,6 +307,12 @@ class MainController
 
     }
 
+    /**
+     * techniques for each belt
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public static function beltInfoAction(Request $request, Application $app)
     {
         $beltInfo = $request->get('color');
@@ -314,21 +327,12 @@ class MainController
         return $app['twig']->render($templateName . '.html.twig', $argsarray);
     }
 
-//    public function errorAction(Application $app, $code)
-//    {
-//        // default - assume a 404 error
-//        $argsArray = [];
-//        $templateName = '404';
-//
-//        if (404 != $code){
-//            $argsArray = [
-//                'message' => 'sorry - an unknow error occurred'
-//            ];
-//            $templateName = 'error';
-//        }
-//
-//        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-//    }
+
+    /**
+     * time since last grade in months
+     * @param $lastGrading
+     * @return float
+     */
 
     public function lastGrade($lastGrading)
     {
@@ -342,6 +346,13 @@ class MainController
         $months = $numberOfUnits;// . 'Months since last grading';
         return $months;
     }
+
+    /**
+     * work out time since last grade from student lastGrade
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function findLastGrade(Request $request, Application $app)
     {
         $lastGrade = $request->get('lastBelt');
@@ -366,12 +377,7 @@ class MainController
             ];
             $templateName = 'lastGrade';
         }
-
-
-
         return $app['twig']->render($templateName . '.html.twig', $argsarray);
-
-
     }
 
 }

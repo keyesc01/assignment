@@ -46,4 +46,31 @@ class TechniqueTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $result);
 
     }
+    public function testCanGetBelt()
+    {
+        // Arrange
+        $qm = new Technique();
+        $expectedResult = 0;
+
+        // Act
+        $result = $qm->getBelts();
+
+        // Assert
+        $this->assertEquals($expectedResult, $result);
+
+    }
+    public function testCanSetBelt()
+    {
+        // arrange
+        $qm = new Technique();
+        $expectedResult = 'text';
+        $qm ->setBelts($expectedResult);
+
+        // Act
+        $result = $qm->getBelts();
+
+        // Assert
+        $this->assertEquals($expectedResult, $result);
+
+    }
 }

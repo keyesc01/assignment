@@ -25,9 +25,14 @@ class Technique extends DatabaseTable
     private $description;
 
 
+    /**
+     * belt colour
+     * @var $belts
+     */
     private $belts;
 
     /**
+     * get the belt
      * @return mixed
      */
     public function getBelts()
@@ -36,6 +41,7 @@ class Technique extends DatabaseTable
     }
 
     /**
+     * set the belt
      * @param mixed $belts
      */
     public function setBelts($belts)
