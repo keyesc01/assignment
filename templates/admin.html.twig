@@ -66,12 +66,16 @@
         <tr>
             <th> Id </th>
             <th> Description </th>
+            <th> Colour </th>
+            <th> Update </th>
 
         </tr>
         {% for technique in techniques %}
             <tr>
                 <td>{{ technique.id }}</td>
                 <td>{{ technique.description }}</td>
+                <td>{{ technique.belt }}</td>
+                <td><a href="/updateTech/{{  technique.id }}"><input type="button" value="update row"></a></td>
             </tr>
         {% endfor %}
 

@@ -169,12 +169,103 @@ class MainController
     {
         $student = Student::getOneById($id);
 
+
         $argsArray = [
             'student' => $student
         ];
 
         $templateName = 'updateStudentForm';
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * update action
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateUserAction(Request $request, Application $app, $id)
+    {
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $joined = $request->get('joined');
+        $lastGrade = $request->get('lastGrade');
+        $currentGrade = $request->get('currentGrade');
+
+        $student = student::getOneById($id);
+
+        $student->setUsername($username);
+        $student->setPassword($password);
+        $student->setJoined($joined);
+        $student->setLastGrade($lastGrade);
+        $student->setCurrentGrade($currentGrade);
+        $insertSuccess = Student::update($student);
+
+        if ($insertSuccess) {
+            return $app->redirect('/admin');
+        } else {
+            print 'wrong try again';
+            //$message = 'error - not able to CREATE item ';
+            //$message .= '<pre>';
+            // capture print_r output as a string
+            // $message .= print_r($student, true);
+            $templateName = 'updateStudentForm';
+            return $app['twig']->render($templateName . '.html.twig', []);
+        }
+    }
+
+    /**
+     * update the techniques
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return mixed
+     */
+    public function updateTechAction(Request $request, Application $app, $id)
+    {
+        $tech = Technique::getOneById($id);
+
+
+        $argsArray = [
+            'technique' => $tech
+        ];
+
+        $templateName = 'updateTechForm';
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * update the techniques
+     * @param Request $request
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateTechniqueAction(Request $request, Application $app, $id)
+    {
+        $desc = $request->get('description');
+        $colour = $request->get('belt');
+
+
+        $student = technique::getOneById($id);
+
+        $student->setDescription($desc);
+        $student->setBelt(colour);
+
+        $insertSuccess = Technique::update($student);
+
+        if ($insertSuccess) {
+            return $app->redirect('/admin');
+        } else {
+            print 'wrong try again';
+            //$message = 'error - not able to CREATE item ';
+            //$message .= '<pre>';
+            // capture print_r output as a string
+            // $message .= print_r($student, true);
+            $templateName = 'updateTechForm';
+            return $app['twig']->render($templateName . '.html.twig', []);
+        }
     }
 
     /**
@@ -222,44 +313,6 @@ class MainController
             // capture print_r output as a string
             // $message .= print_r($student, true);
             $templateName = 'newStudentForm';
-            return $app['twig']->render($templateName . '.html.twig', []);
-        }
-    }
-
-
-    /**
-     * update students info
-     * @param Request $request
-     * @param Application $app
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function updateUserAction(Request $request, Application $app, $id)
-    {
-        $username = $request->get('username');
-        $password = $request->get('password');
-        $joined = $request->get('joined');
-        $lastGrade = $request->get('lastGrade');
-        $currentGrade = $request->get('currentGrade');
-
-        $student = student::getOneById($id);
-
-        $student->setUsername($username);
-        $student->setPassword($password);
-        $student->setJoined($joined);
-        $student->setLastGrade($lastGrade);
-        $student->setCurrentGrade($currentGrade);
-        $insertSuccess = Student::update($student);
-
-        if ($insertSuccess) {
-            return $app->redirect('/admin');
-        } else {
-            print 'wrong try again';
-            //$message = 'error - not able to CREATE item ';
-            //$message .= '<pre>';
-            // capture print_r output as a string
-            // $message .= print_r($student, true);
-            $templateName = 'updateStudentForm';
             return $app['twig']->render($templateName . '.html.twig', []);
         }
     }

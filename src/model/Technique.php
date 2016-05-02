@@ -27,26 +27,26 @@ class Technique extends DatabaseTable
 
     /**
      * belt colour
-     * @var $belts
+     * @var $belt
      */
-    private $belts;
+    private $belt;
 
     /**
      * get the belt
      * @return mixed
      */
-    public function getBelts()
+    public function getBelt()
     {
-        return $this->belts;
+        return $this->belt;
     }
 
     /**
      * set the belt
-     * @param mixed $belts
+     * @param mixed $belt
      */
-    public function setBelts($belts)
+    public function setBelt($belt)
     {
-        $this->belts = $belts;
+        $this->belt = $belt;
     }
 
 

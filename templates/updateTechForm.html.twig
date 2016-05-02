@@ -1,0 +1,22 @@
+{% extends '_base.html.twig' %}
+
+{% block main %}
+
+    <h1>Update Student Form</h1>
+    <form action="/updateTechnique/{{ technique.id }}" method="post">
+        <h1>Create New Module</h1>
+
+
+        <p><input type="hidden" name="id" placeholder="{{ technique.id }}"></p>
+
+        <h3>Technique</h3>
+        <p><input type="text" name="description" placeholder="{{ technique.description }}"></p>
+
+        <h3>Belt Colour</h3>
+        <p><input type="text" name="belt" placeholder="{{ technique.belt }}"></p>
+
+        <input type="submit" value="Update user">
+    </form>
+
+
+{% endblock %}
