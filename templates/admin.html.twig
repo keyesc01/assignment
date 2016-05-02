@@ -1,19 +1,17 @@
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Martial Arts Club {% block title %}{% endblock %}</title>
-    <style>
-        @import "/../css/style.css";
-        @import "/../css/nav.css";
-    </style>
-</head>
-<body>
+
+{% extends '_base.html.twig' %}
+
+{% block title %}admin home{% endblock %}
+{% block pageTitle %}insert page{% endblock %}
+
+{# ------------------------------------------------- #}
+{% block adminNavStyle %}current_page{% endblock %}
+
 
 {% block main %}
 
-    <h1>Welcome to the Admin home page !</h1>  <a href="/logout"><input type="button" value="Logout"> </a>
+    <h1>Welcome to the Admin home page !</h1>
 
     <h3>Student table</h3>
 
@@ -44,26 +42,6 @@
 
    </table>
 
-
-    <h3>Grades table</h3>
-    <table>
-        <tr>
-            <th> Id </th>
-            <th> StudentId </th>
-            <th> Date </th>
-
-        </tr>
-        {% for grade in gradings %}
-            <tr>
-                <td>{{ grade.id }}</td>
-                <td>{{ grade.studentId }}</td>
-                <td>{{ grade.date }}</td>
-
-            </tr>
-        {% endfor %}
-
-    </table>
-
     <h3>Attendance table</h3>
     <table>
         <tr>
@@ -88,6 +66,7 @@
         <tr>
             <th> Id </th>
             <th> Description </th>
+
         </tr>
         {% for technique in techniques %}
             <tr>

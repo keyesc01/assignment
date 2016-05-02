@@ -16,6 +16,7 @@ use Itb\Model\Student;
 use Itb\Model\Grading;
 use Itb\Model\Attendance;
 use Itb\Model\Technique;
+use Itb\Model\Belt;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -42,17 +43,21 @@ class UserController extends DatabaseManager
 
 
         if ($username == "admin" && $password == "admin") {
-            session_start();
+
+//            $_SESSION['role'] = 'admin';
+
             $students = Student::getAll();
             $gradings = Grading::getAll();
             $attendances = Attendance::getAll();
             $techniques = Technique::getAll();
+            $belts = Belt::getAll();
 
             $argsArray = [
                 'students' => $students,
                 'gradings' => $gradings,
                 'attendances' => $attendances,
-                'techniques' => $techniques
+                'techniques' => $techniques,
+                'belts' => $belts
             ];
 
             $templateName = 'admin';
@@ -128,8 +133,9 @@ class UserController extends DatabaseManager
      */
     public function logoutAction(Request $request, Application $app)
     {
+
         // logout any existing user
-        $app['session']->set('user', null);
+//        $app['session']->set('user', null);
 
         // redirect to home page
 //        return $app->redirect('');

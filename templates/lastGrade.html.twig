@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "/../css/style.css";
+        @import "/../css/nav.css";
+    </style>
+</head>
+<body>
+
+{% block main %}
+    {% if message is defined %}
+        {{ message }}
+    {% endif %}
+    <h3>Last Grade</h3>
+
+    <p>{{ lastGrade }} months since last grade</p>
+
+{% endblock %}

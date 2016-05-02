@@ -25,6 +25,25 @@ class Technique extends DatabaseTable
     private $description;
 
 
+    private $belts;
+
+    /**
+     * @return mixed
+     */
+    public function getBelts()
+    {
+        return $this->belts;
+    }
+
+    /**
+     * @param mixed $belts
+     */
+    public function setBelts($belts)
+    {
+        $this->belts = $belts;
+    }
+
+
     /**
      * get id
      * @return int

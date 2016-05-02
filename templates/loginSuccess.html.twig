@@ -13,13 +13,15 @@
 {% block main %}
 
     <h2>Hi {{ username }}, here are you details</h2>   <a href="/logout"><input type="button" value="Logout"> </a>
+
     <table>
         <tr>
             <th> id </th>
             <th> username </th>
             <th> joined </th>
             <th> last grade </th>
-            <th> current grade</th>
+
+            <th> current belt</th>
         </tr>
 
             <tr>
@@ -27,7 +29,9 @@
                 <td>{{ student.username }}</td>
                 <td>{{ student.date }}</td>
                 <td>{{ student.lastGrade }} </td>
-                <td>{{ student.currentGrade }}</td>
+
+                <td>{{ student.belt }}</td>
+
             </tr>
 
     </table>
@@ -35,6 +39,19 @@
         {% for descrip in description %}
             <button>{{ descrip.description }}</button>
         {% endfor %}
+    </p>
+
+    <p>View the classes needed for each belt
+        <a href="/belts"><input type="button" value="belts"> </a>
+    </p>
+
+    <p>Grade Update
+        <form action="/lastGrade" method="post">
+            <input type="hidden" value={{ student.lastGrade }} name="lastBelt">
+
+
+    <input type="submit" value="last grade">
+        </form>
     </p>
 
     <h3>Attendance table</h3>

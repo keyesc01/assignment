@@ -42,7 +42,7 @@ class Attendance extends DatabaseTable
 
 
     /**
-     * get student username
+     * get student id
      * @return int
      */
     public function getUsername()
@@ -51,7 +51,7 @@ class Attendance extends DatabaseTable
     }
 
     /**
-     * set student username
+     * set student id
      * @param int $studentId
      */
     public function setUsername($username)

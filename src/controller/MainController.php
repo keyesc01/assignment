@@ -4,6 +4,7 @@
  */
 namespace Itb\controller;
 
+use Itb\Model\Belt;
 use Itb\Model\Student;
 use Itb\Model\Grading;
 use Itb\Model\Attendance;
@@ -41,20 +42,23 @@ class MainController
      */
     public function adminAction(Request $request, Application $app)
     {
-        //        $studentRepository = new StudentRepository();
-        $students = Student::getAll();
-        $gradings = Grading::getAll();
-        $attendances = Attendance::getAll();
-        $techniques = Technique::getAll();
 
-        $argsArray = [
-            'students' => $students,
-            'gradings' => $gradings,
-            'attendances' => $attendances,
-            'techniques' => $techniques
-        ];
 
-        $templateName = 'admin';
+            //        $studentRepository = new StudentRepository();
+            $students = Student::getAll();
+            $gradings = Grading::getAll();
+            $attendances = Attendance::getAll();
+            $techniques = Technique::getAll();
+
+            $argsArray = [
+                'students' => $students,
+                'gradings' => $gradings,
+                'attendances' => $attendances,
+                'techniques' => $techniques
+            ];
+
+            $templateName = 'admin';
+
         return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 
@@ -283,20 +287,91 @@ class MainController
         // return whether or not hash of input password matches stored hash
         return password_verify($password, $hashedStoredPassword);
     }
-
-    public function errorAction(Application $app, $code)
+    public static function beltAction(Request $request, Application $app)
     {
-        // default - assume a 404 error
-        $argsArray = [];
-        $templateName = '404';
+        $belts = Belt::getAll();
 
-        if (404 != $code){
-            $argsArray = [
-                'message' => 'sorry - an unknow error occurred'
+       $argsarray = [
+           'belts' => $belts
+       ];
+        $templateName = 'belts';
+
+        return $app['twig']->render($templateName . '.html.twig', $argsarray);
+
+    }
+
+    public static function beltInfoAction(Request $request, Application $app)
+    {
+        $beltInfo = $request->get('color');
+
+        $techniques = Technique::searchByColumn('belt', $beltInfo);
+
+        $argsarray = [
+            'techniques' => $techniques
+        ];
+        $templateName = 'beltsInfo';
+
+        return $app['twig']->render($templateName . '.html.twig', $argsarray);
+    }
+
+//    public function errorAction(Application $app, $code)
+//    {
+//        // default - assume a 404 error
+//        $argsArray = [];
+//        $templateName = '404';
+//
+//        if (404 != $code){
+//            $argsArray = [
+//                'message' => 'sorry - an unknow error occurred'
+//            ];
+//            $templateName = 'error';
+//        }
+//
+//        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+//    }
+
+    public function lastGrade($lastGrading)
+    {
+        $time = strtotime($lastGrading);
+        $time = time() - $time; // to get the time since that moment
+
+        $time = ($time < 1) ? 1 : $time;
+        $token = 2592000;// this amount of untis is equal to one month
+
+        $numberOfUnits = floor($time / $token);
+        $months = $numberOfUnits;// . 'Months since last grading';
+        return $months;
+    }
+    public function findLastGrade(Request $request, Application $app)
+    {
+        $lastGrade = $request->get('lastBelt');
+
+        $timeSinceLastGrading = $this->lastGrade($lastGrade);
+
+        if($timeSinceLastGrading >= 2){
+
+            $message = 'Its time to upgrade to the next belt';
+
+            $argsarray = [
+                'lastGrade' => $timeSinceLastGrading,
+                'message' => $message
             ];
-            $templateName = 'error';
+            $templateName = 'lastGrade';
+        }
+        else{
+            $message = 'Still need more training!';
+            $argsarray = [
+                'lastGrade' => $timeSinceLastGrading,
+                'message' => $message
+            ];
+            $templateName = 'lastGrade';
         }
 
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+
+
+        return $app['twig']->render($templateName . '.html.twig', $argsarray);
+
+
     }
+
 }
