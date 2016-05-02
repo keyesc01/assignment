@@ -1,19 +1,19 @@
-{#----------------#}
-{# templates/admin.html.twig #}
-{#----------------#}
 
-{% extends '_base.html.twig' %}
-
-{% block title %}admin home{% endblock %}
-{% block pageTitle %}insert page{% endblock %}
-
-{# ------------------------------------------------- #}
-{% block adminNavStyle %}current_page{% endblock %}
-
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Martial Arts Club {% block title %}{% endblock %}</title>
+    <style>
+        @import "/../css/style.css";
+        @import "/../css/nav.css";
+    </style>
+</head>
+<body>
 
 {% block main %}
 
-    <h1>Welcome to the Admin home page !</h1>
+    <h1>Welcome to the Admin home page !</h1>  <a href="/logout"><input type="button" value="Logout"> </a>
 
     <h3>Student table</h3>
 
@@ -24,6 +24,7 @@
             <th> Last Grade </th>
             <th> Current Grade</th>
             <th> Date Joined </th>
+            <th colspan="2"><a href="/insert"><input type="button" value="Add new Student"></a></th>
         </tr>
         {% for student in students %}
             <tr>
@@ -42,7 +43,7 @@
         {% endfor %}
 
    </table>
-<a href="/insert"><input type="button" value="Add to database"></a>
+
 
     <h3>Grades table</h3>
     <table>

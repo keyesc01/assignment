@@ -1,8 +1,3 @@
-{#{% extends '_base.html.twig' %}#}
-
-{# ----------------------------------------#}
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,11 +10,9 @@
 </head>
 <body>
 
-
 {% block main %}
-    {#well done {{ username }} , you have successfully logged in to the system.#}
 
-    <h2>{{ username }}, here is your stats</h2>   <a href="/logout"><input type="button" value="Logout"> </a>
+    <h2>Hi {{ username }}, here are you details</h2>   <a href="/logout"><input type="button" value="Logout"> </a>
     <table>
         <tr>
             <th> id </th>
@@ -40,7 +33,7 @@
     </table>
     <p>What class are you attending today?
         {% for descrip in description %}
-            <button>{{ descrip.description }}</button> not doing anything!!!!!
+            <button>{{ descrip.description }}</button>
         {% endfor %}
     </p>
 
@@ -51,15 +44,10 @@
         </tr>
         {% for attend in attendants %}
             <tr>
-
                 <td>{{ attend.date }}</td>
-
             </tr>
         {% endfor %}
-
     </table>
-
-
 {% endblock %}
 
 <footer>

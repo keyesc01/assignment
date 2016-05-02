@@ -74,4 +74,32 @@ class AttendanceTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testCanGetOneByUsernameWhenNoUsername()
+    {
+        // Arrange
+        $qm = new Attendance();
+        $expectedResult = '';
+
+        // Act
+        $result = $qm->getOneByUsername($expectedResult);
+
+
+        // Assert
+        $this->assertEquals($expectedResult, $result);
+
+    }
+    public function testCanGetOneByUsername()
+    {
+        // Arrange
+        $qm = new Attendance();
+        $expectedResult = 'ciaran';
+
+        // Act
+        $result = $qm->getOneByUsername($expectedResult);
+
+        // Assert
+        $this->assertEquals($expectedResult, $result->getUsername());
+
+    }
+
 }

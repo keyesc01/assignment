@@ -11,13 +11,17 @@
 {# ----------------------------------------#}
 {% block main %}
     <p>The classes for this week are as follows:</p>
-    {% for day in days %}
+
+
+    {% for techniques in techniques %}
 
         <ul>
-            <li>{{ day }}</li>
+            <li> {{ techniques.description }}</li>
         </ul>
 
     {% endfor %}
-    <p>The run on the hour every hour from 10am -> 7pm:</p>
+    <p>They will run from : 7am - 8:30am, 6pm - 8pm on weekdays</p>
+
+    <p>7am - 9am , 12pm - 2pm, 4pm - 6pm on weekends</p>
 
 {% endblock %}

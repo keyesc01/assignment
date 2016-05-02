@@ -2,7 +2,7 @@
 /**
  * main conreoller
  */
-namespace Itb\controller;
+namespace Itb\Controller;
 
 use Itb\Model\Student;
 use Itb\Model\Grading;
@@ -104,17 +104,10 @@ class MainController
      */
     public function daysAction(Request $request, Application $app)
     {
-        $days = array(
-            'Monday ='.' Bushido',
-            'Tuesday ='.' Karate',
-            'Wednesday ='.' Kick Boxing',
-            'Thursday ='.' Kendo',
-            'Friday ='.' Bo Staff Training'
-        );
-
+        $techniques = Technique::getAll();
 
         $argsArray = [
-            'days' => $days,
+            'techniques' => $techniques
         ];
 
         $templateName = 'days';
@@ -164,7 +157,8 @@ class MainController
 //        $templateName = 'message';
 //
 //        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-        return $app->redirect('/admin');
+//        return $app->redirect('/admin');
+        header('Location: '.$_SERVER['REQUEST_URI']);
     }
 
     /**
@@ -245,12 +239,11 @@ class MainController
      */
     public function updateUserAction(Request $request, Application $app, $id)
     {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-//        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-        $joined = filter_input(INPUT_POST, 'joined', FILTER_SANITIZE_STRING);
-        $lastGrade = filter_input(INPUT_POST, 'lastGrade', FILTER_SANITIZE_STRING);
-        $currentGrade = filter_input(INPUT_POST, 'currentGrade', FILTER_SANITIZE_STRING);
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $joined = $request->get('joined');
+        $lastGrade = $request->get('lastGrade');
+        $currentGrade = $request->get('currentGrade');
 
         $student = student::getOneById($id);
 

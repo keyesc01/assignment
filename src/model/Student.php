@@ -2,7 +2,7 @@
 /**
  * student class
  */
-namespace Itb\model;
+namespace Itb\Model;
 
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Mattsmithdev\PdoCrud\DatabaseManager;

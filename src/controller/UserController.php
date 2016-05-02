@@ -6,7 +6,7 @@
  * Time: 09:20
  */
 
-namespace Itb\controller;
+namespace Itb\Controller;
 
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
@@ -40,6 +40,26 @@ class UserController extends DatabaseManager
         $username =$request->get('username');
         $password =$request->get('password');
 
+
+        if($username == "admin" && $password == "admin")
+        {
+            $students = Student::getAll();
+            $gradings = Grading::getAll();
+            $attendances = Attendance::getAll();
+            $techniques = Technique::getAll();
+
+            $argsArray = [
+                'students' => $students,
+                'gradings' => $gradings,
+                'attendances' => $attendances,
+                'techniques' => $techniques
+            ];
+
+            $templateName = 'admin';
+            return $app['twig']->render($templateName . '.html.twig', $argsArray);
+        }
+
+
         // search for user with username in repository
         $isLoggedIn = MainController::canFindMatchingUsernameAndPassword($username, $password);
 //       $timestamp =  UserController::registertimeLogin();
@@ -48,16 +68,6 @@ class UserController extends DatabaseManager
         // action depending on login success
         if ($isLoggedIn) {
 
-//            if($username == "admin")
-//            {
-//                $students = student::getAll();
-//
-//                $argsArray = [
-//                    'students' => $students,
-//                ];
-//                $templateName = 'admin';
-//                return $app['twig']->render($templateName . '.html.twig', $argsArray);
-//            }
             $students = Student::getOneByUsername($username);
             $classes = Technique::getAll();
 
@@ -89,7 +99,6 @@ class UserController extends DatabaseManager
     }
 
 
-    // action for route:    /login
     /**
      * login action
      * @param Request $request
