@@ -1,8 +1,8 @@
 <?php
 /**
- * main conreoller
+ * main controller
  */
-namespace Itb\Controller;
+namespace Itb\controller;
 
 use Itb\Model\Student;
 use Itb\Model\Grading;
@@ -150,15 +150,8 @@ class MainController
     {
         $students = Student::delete($id);
 
-//        $argsArray = [
-//            'message' => 'The selected row has been removed from the database'
-//        ];
-//
-//        $templateName = 'message';
-//
-//        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-//        return $app->redirect('/admin');
-        header('Location: '.$_SERVER['REQUEST_URI']);
+        return $app->redirect('/admin');
+//        header('Location: '.$_SERVER['REQUEST_URI']);
     }
 
     /**

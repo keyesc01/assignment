@@ -2,7 +2,7 @@
 /**
  * technique class
  */
-namespace Itb\Model;
+namespace Itb\model;
 
 use Mattsmithdev\PdoCrud\DatabaseTable;
 use Mattsmithdev\PdoCrud\DatabaseManager;
@@ -36,7 +36,7 @@ class Technique extends DatabaseTable
 
 
     /**
-     * get student id
+     * get description
      * @return string
      */
     public function getDescription()
@@ -45,7 +45,7 @@ class Technique extends DatabaseTable
     }
 
     /**
-     * set student id
+     * set description
      * @param string $description
      */
     public function setDescription($description)

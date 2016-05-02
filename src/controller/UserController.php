@@ -6,7 +6,7 @@
  * Time: 09:20
  */
 
-namespace Itb\Controller;
+namespace Itb\controller;
 
 use Mattsmithdev\PdoCrud\DatabaseManager;
 use Silex\Application;
@@ -41,8 +41,7 @@ class UserController extends DatabaseManager
         $password =$request->get('password');
 
 
-        if($username == "admin" && $password == "admin")
-        {
+        if ($username == "admin" && $password == "admin") {
             $students = Student::getAll();
             $gradings = Grading::getAll();
             $attendances = Attendance::getAll();
@@ -67,7 +66,6 @@ class UserController extends DatabaseManager
         $argsArray = ['username' => $username];
         // action depending on login success
         if ($isLoggedIn) {
-
             $students = Student::getOneByUsername($username);
             $classes = Technique::getAll();
 
