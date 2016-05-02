@@ -79,22 +79,22 @@ class MainController
      * @param Application $app
      * @return mixed
      */
-    public function listAction(Request $request, Application $app)
-    {
-        //$studentRepository = new Student();
-        $students = Student::getAll();
-
-//        $gradeRepository = new Grading();
-        $gradings = Grading::getAll();
-
-        $argsArray = [
-            'students' => $students,
-            'gradings' => $gradings
-        ];
-
-        $templateName = 'list';
-        return $app['twig']->render($templateName . '.html.twig', $argsArray);
-    }
+//    public function listAction(Request $request, Application $app)
+//    {
+//        //$studentRepository = new Student();
+//        $students = Student::getAll();
+//
+////        $gradeRepository = new Grading();
+//        $gradings = Grading::getAll();
+//
+//        $argsArray = [
+//            'students' => $students,
+//            'gradings' => $gradings
+//        ];
+//
+//        $templateName = 'list';
+//        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+//    }
 
     /**
      * days action
@@ -282,5 +282,21 @@ class MainController
 //        die();
         // return whether or not hash of input password matches stored hash
         return password_verify($password, $hashedStoredPassword);
+    }
+
+    public function errorAction(Application $app, $code)
+    {
+        // default - assume a 404 error
+        $argsArray = [];
+        $templateName = '404';
+
+        if (404 != $code){
+            $argsArray = [
+                'message' => 'sorry - an unknow error occurred'
+            ];
+            $templateName = 'error';
+        }
+
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
     }
 }

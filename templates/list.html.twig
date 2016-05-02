@@ -10,45 +10,47 @@
 {% block main %}
 
 <!-- start table for displaying DVD details -->
-<h2>What is in the student db table</h2>
-<p>Student table</p>
-<table>
-    <tr>
-        <th> id </th>
-        <th> username </th>
+{#<h2>What is in the student db table</h2>#}
+{#<p>Student table</p>#}
+{#<table>#}
+    {#<tr>#}
+        {#<th> id </th>#}
+        {#<th> username </th>#}
         {#<th> password </th>#}
-        <th> joined </th>
-        <th> last grade </th>
-        <th> current grade</th>
-    </tr>
-    {% for student in students %}
-        <tr>
-            <td>{{ student.id }}</td>
-            <td>{{ student.username }}</td>
+        {#<th> joined </th>#}
+        {#<th> last grade </th>#}
+        {#<th> current grade</th>#}
+    {#</tr>#}
+    {#{% for student in students %}#}
+        {#<tr>#}
+            {#<td>{{ student.id }}</td>#}
+            {#<td>{{ student.username }}</td>#}
             {#<td>{{ student.password }}</td>#}
-            <td>{{ student.joined }}</td>
-            <td>{{ student.lastGrade }} </td>
-            <td>{{ student.currentGrade }}</td>
-        </tr>
-    {% endfor %}
+            {#<td>{{ student.joined }}</td>#}
+            {#<td>{{ student.lastGrade }} </td>#}
+            {#<td>{{ student.currentGrade }}</td>#}
+        {#</tr>#}
+    {#{% endfor %}#}
 
-</table>
-    <p>Grades table</p>
-    <table>
-        <tr>
-            <th> id </th>
-            <th> studentId </th>
-            <th> date </th>
+{#</table>#}
+    {#<p>Grades table</p>#}
+    {#<table>#}
+        {#<tr>#}
+            {#<th> id </th>#}
+            {#<th> studentId </th>#}
+            {#<th> date </th>#}
 
-        </tr>
-        {% for grade in gradings %}
-            <tr>
-                <td>{{ grade.id }}</td>
-                <td>{{ grade.studentId }}</td>
-                <td>{{ grade.date }}</td>
+        {#</tr>#}
+        {#{% for grade in gradings %}#}
+            {#<tr>#}
+                {#<td>{{ grade.id }}</td>#}
+                {#<td>{{ grade.studentId }}</td>#}
+                {#<td>{{ grade.date }}</td>#}
 
-            </tr>
-        {% endfor %}
+            {#</tr>#}
+        {#{% endfor %}#}
 
-    </table>
+    {#</table>#}
+
+    test
 {% endblock %}

@@ -42,6 +42,7 @@ class UserController extends DatabaseManager
 
 
         if ($username == "admin" && $password == "admin") {
+            session_start();
             $students = Student::getAll();
             $gradings = Grading::getAll();
             $attendances = Attendance::getAll();
